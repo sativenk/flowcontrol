@@ -1,0 +1,16 @@
+---
+- hosts: servera.lab.example.com
+  tasks:
+    - name: to create a group
+      group:
+        name: LIT
+        state: present
+    - name: to create multiple users
+      user:
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+      with_items:
+        - { name: 'john', groups: 'LIT' }
+        - { name: 'brad', groups: 'LIT' }
+        - { name: 'syed', groups: 'LIT' }

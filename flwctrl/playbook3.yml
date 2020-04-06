@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+    - name: to create a group
+      group:
+        name: LIT
+        state: present
+    - name: to create multiple users
+      user:
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+      with_items:
+        - { name: 'trisha', groups: 'LIT','john' }
+        - { name: 'ramya', groups: 'LIT','john' }
+        - { name: 'shreya', groups: 'LIT' }

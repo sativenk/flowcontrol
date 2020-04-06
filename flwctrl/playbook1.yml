@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  become: true
+  tasks:
+    - file:
+        path: /tmp/{{ item }}
+        state: directory
+        mode: 0777
+      with_items:
+        - dir111
+        - dir211

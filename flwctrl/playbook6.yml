@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: to create a group
+      group:
+        name: BTM
+        state: present
+    - name: to create multiple users
+      user:
+        name: "{{ item[0] }}"
+        state: present
+        groups: "{{ item[1] }}"
+      with_nested:
+        - { 'chris','shreya','BTM' }
+        - { 'joe','shreya','BTM' }
+        - { 'syed','shreya','BTM' }

@@ -1,0 +1,18 @@
+---
+- hosts: servera.lab.example.com
+  remote_user: student
+  become: true
+  tasks:
+    - name: to create multiple users
+      user:
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+    - name: to group a group
+      group:
+        name: LIT
+        state: present
+      with_items:
+        - { name: 'john', groups: 'student','LIT' }
+        - { name: 'brad', groups: 'devops','LIT' }
+        - { name: 'syed', groups: 'LIT' }

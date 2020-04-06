@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  become: true
+  tasks:
+    - user: 
+        name: "{{ item[0] }}"
+        groups: "{{ item[1] }}"
+      with_nested:
+        - [ 'aaa','bbb' ]
+        - [ 'aa','bb','student' ]
+
